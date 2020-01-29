@@ -1,0 +1,7 @@
+Flask
+Flask-API
+Flask-SQLAlchemy
+SQLAlchemy
+flask-cors
+pytest
+pytest-flask
