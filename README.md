@@ -1,7 +1,15 @@
 # getName-api
+
 getName Api to resolve patient's name
 
-### 1. Install
+### 1. Run Docker
+
+```
+docker build -t getname .
+
+docker run -d --name mygetname -p 5000:5000 getname
+```
+### 2.1 Development
 
 ```
 $ python3 -m venv env
@@ -9,7 +17,7 @@ $ source env/bin/activate
 $ pip3 install -r requirements.txt
 ```
 
-### Install Oracle Cli
+### 2.2 Install Oracle Cli
 
 Link from https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
 

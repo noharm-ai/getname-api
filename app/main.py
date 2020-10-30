@@ -14,6 +14,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 CORS(app)
 
+@app.route("/")
+def hello():
+    return "Hello World from Flask"
+
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
 def getName(idPatient):
 
@@ -34,4 +38,4 @@ def getName(idPatient):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=443, ssl_context='adhoc')
