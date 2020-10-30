@@ -5,3 +5,4 @@ SQLAlchemy
 flask-cors
 pytest
 pytest-flask
+cx_Oracle
