@@ -1,0 +1,16 @@
+name: Build
+on:
+    push:
+      branches: [ master ] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker Image
+        run: docker build -t getname -f Dockerfile
+      - name: Run Docker Image
+        run: docker run -d --name mygetname -p 443:443 getname
+      - name: Test GetName Service
+        run: curl -k https://localhost/
