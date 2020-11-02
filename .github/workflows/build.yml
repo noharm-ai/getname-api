@@ -11,6 +11,6 @@ jobs:
       - name: Build Docker Image
         run: docker build -t getname .
       - name: Run Docker Image
-        run: docker run -d --name mygetname -p 443:443 getname
+        run: docker run -d --name mygetname -p 5000:443 getname
       - name: Test GetName Service
-        run: curl -k https://localhost/
+        run: curl -k https://localhost:5000/
