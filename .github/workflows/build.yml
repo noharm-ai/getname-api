@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Docker Image
-        run: docker build -t getname -f Dockerfile
+        run: docker build -t getname .
       - name: Run Docker Image
         run: docker run -d --name mygetname -p 443:443 getname
       - name: Test GetName Service
