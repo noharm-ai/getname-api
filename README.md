@@ -19,9 +19,11 @@ Access-Control-Allow-Origin: *
 ### 1. Run Docker
 
 ```
-docker build -t getname .
+docker build -t getname . #build
 
-docker run -d --name mygetname -p 443:443 getname
+docker run -p 443:443 getname #test
+
+docker run -d --name mygetname -p 443:443 getname #deamon
 ```
 ### 2.1 Development
 
