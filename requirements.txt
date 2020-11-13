@@ -1,10 +1,6 @@
 Flask
 Flask-API
-Flask-SQLAlchemy
-SQLAlchemy
 flask-cors
-pytest
-pytest-flask
 cx_Oracle
 pyopenssl
 uwsgi
