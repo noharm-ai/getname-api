@@ -2,6 +2,7 @@ from flask import request, url_for, jsonify
 from flask_api import FlaskAPI, status
 from model import db, Patient
 from flask_cors import CORS
+import cx_Oracle
 import logging
 
 logging.basicConfig()
