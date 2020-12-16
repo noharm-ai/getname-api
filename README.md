@@ -19,6 +19,10 @@ Access-Control-Allow-Origin: *
 ### 1. Run Docker
 
 ```
+git clone https://github.com/noharm-ai/getname-api
+
+cd getname-api
+
 docker build -t getname . #build
 
 docker run -p 443:443 getname #test
