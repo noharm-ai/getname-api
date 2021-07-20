@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route("/")
 def hello():
-    return "Hello World from Flask"
+    return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
 
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
 def getRawName(idPatient):
