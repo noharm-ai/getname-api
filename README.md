@@ -63,3 +63,8 @@ sudo apt install certbot python3-certbot-nginx
 sudo certbot run -a manual -i nginx -d *.domain.com
 sudo certbot renew
 ```
+
+### 2.4 Partial Update
+```
+git checkout origin/master Dockerfile tmp.conf
+```
