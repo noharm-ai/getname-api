@@ -55,3 +55,11 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_9:$LD_LIBRARY_PATH
 ```
 
 Tutorial from: https://docs.oracle.com/en/database/oracle/oracle-database/19/lnoci/instant-client.html
+
+### 2.3 Let's Encrypt Certificate
+
+```
+sudo apt install certbot python3-certbot-nginx
+sudo certbot run -a manual -i nginx -d *.domain.com
+sudo certbot renew
+```
