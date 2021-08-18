@@ -66,5 +66,6 @@ sudo certbot renew
 
 ### 2.4 Partial Update
 ```
+git pull
 git checkout origin/master Dockerfile tmp.conf
 ```
