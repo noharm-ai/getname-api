@@ -12,6 +12,18 @@ RUN pip install cx-Oracle \
     && ldconfig
 ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_19_9
 
+RUN apt-get update && apt-get install -y cron
+
+
+# Copy crontab file to the cron.d directory
+COPY crontab /etc/cron.d/crontab
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/crontab
+
+# Apply cron job
+RUN crontab /etc/cron.d/crontab
+
 ARG SLL_URL=https://noharm.ai/ssl
 
 RUN wget -c $SLL_URL/fullchain.pem -P /etc/ssl --no-check-certificate
@@ -26,3 +38,9 @@ RUN pip install --upgrade pip
 RUN pip install -r ./requirements.txt
 
 COPY ./app /app
+
+# Create the log file if needed for debug, uncomment crontab file as well
+# RUN touch /var/log/cron.log
+
+# Give execution rights on the task script
+RUN chmod 0744 /app/renew_cert.sh

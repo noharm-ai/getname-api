@@ -1,0 +1,2 @@
+0 3 * * * /bin/bash /app/renew_cert.sh #  >> /var/log/cron.log 2>&1
+# This empty line is required
