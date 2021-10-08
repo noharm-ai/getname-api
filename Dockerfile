@@ -1,5 +1,6 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.8
 
+# if apt-secure(8) error use --allow-releaseinfo-change
 RUN apt-get update
 
 RUN pip install cx-Oracle \
