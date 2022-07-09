@@ -10,10 +10,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build Docker Image
         run: docker build -t getname .
-      - name: Run Docker Image
-        run: docker run -d --name mygetname -p 443:443 getname
       - name: Test GetName Service
         run: |
+            docker run -d --name mygetname -p 443:443 getname
             sleep 10
             docker logs mygetname --tail 50
             curl -k https://localhost/
