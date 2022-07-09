@@ -16,4 +16,4 @@ jobs:
         run: |
             sleep 10
             docker logs mygetname --tail 50
-            curl -k https://localhost/ --silent
+            curl -k https://localhost/ --fail
