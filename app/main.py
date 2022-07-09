@@ -1,6 +1,7 @@
 from flask import request, url_for, jsonify
 from flask_api import FlaskAPI, status
 from flask_cors import CORS
+from functools import lru_cache
 import cx_Oracle
 
 app = FlaskAPI(__name__)
@@ -11,6 +12,7 @@ def hello():
     return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
 
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
+@lru_cache(maxsize=1024)
 def getRawName(idPatient):
 
     name = None
