@@ -15,4 +15,5 @@ jobs:
       - name: Test GetName Service
         run: |
             sleep 10
+            docker logs mygetname --tail
             curl -k https://localhost/
