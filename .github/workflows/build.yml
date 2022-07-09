@@ -15,5 +15,4 @@ jobs:
       - name: Not Test GetName Service
         run: |
             sleep 10
-            docker logs mygetname --tail 50
-            curl -k https://localhost/ --fail
+            docker logs mygetname
