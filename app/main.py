@@ -7,6 +7,10 @@ import cx_Oracle
 app = FlaskAPI(__name__)
 CORS(app)
 
+pool = cx_Oracle.SessionPool(user="user", password="pass",
+                             dsn="127.0.0.1:1521/service", min=2,
+                             max=5, increment=1)
+
 @app.route("/")
 def hello():
     return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
@@ -17,11 +21,14 @@ def getRawName(idPatient):
 
     name = None
     
-    with cx_Oracle.connect("user", "pass", "127.0.0.1:1521/service") as connection:
-        cursor = connection.cursor()
-        for result in cursor.execute("SELECT nm_paciente FROM schema.paciente WHERE cd_paciente = "+str(idPatient)):
-            name = result[0]
+    #with cx_Oracle.connect("user", "pass", "127.0.0.1:1521/service") as connection:
+    connection = pool.acquire()
+    cursor = connection.cursor()
+    for result in cursor.execute("SELECT nm_paciente FROM schema.paciente WHERE cd_paciente = "+str(idPatient)):
+        name = result[0]
     
+    pool.release(connection)
+
     if name:
         return {
             'status': 'success',
