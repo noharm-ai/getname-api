@@ -29,6 +29,13 @@ docker run -p 443:443 getname #test
 
 docker run -d --name mygetname -p 443:443 getname #deamon
 ```
+
+### 1.1 Test
+
+```
+$ curl https://nomedocliente.getname.noharm.ai/patient-name/12345
+```
+
 ### 2.1 Development
 
 ```
