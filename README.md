@@ -29,7 +29,15 @@ docker run -p 443:443 getname #test
 
 docker run -d --name mygetname -p 443:443 getname #deamon
 ```
-### 2.1 Development
+
+### 1.1. Teste
+
+```
+curl https://nomedocliente.getname.noharm.ai/patient-name/12345
+```
+
+### 2. Outras configurações
+### 2.1 Desenvolvimento
 
 ```
 $ python3 -m venv env
@@ -37,7 +45,7 @@ $ source env/bin/activate
 $ pip3 install -r requirements.txt
 ```
 
-### 2.2 Install Oracle Cli
+### 2.2. Instalar Oracle Cli
 
 Link from https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
 
@@ -56,7 +64,7 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_9:$LD_LIBRARY_PATH
 
 Tutorial from: https://docs.oracle.com/en/database/oracle/oracle-database/19/lnoci/instant-client.html
 
-### 2.3 Let's Encrypt Certificate
+### 2.3. Encriptar o Certificado
 
 ```
 sudo apt install certbot python3-certbot-nginx
@@ -64,8 +72,14 @@ sudo certbot run -a manual -i nginx -d *.domain.com
 sudo certbot renew
 ```
 
-### 2.4 Partial Update
+### 2.4 Atualização Parcial
 ```
 git pull
 git checkout origin/master Dockerfile tmp.conf
+```
+
+### 2.4 Atualização manual do certificado
+```
+cd getname-api/app
+sh renew_cert.sh
 ```
