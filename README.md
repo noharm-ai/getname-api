@@ -80,6 +80,8 @@ git checkout origin/master Dockerfile tmp.conf
 
 ### 2.4 Atualização manual do certificado
 ```
-cd getname-api/app
-sh renew_cert.sh
+docker exec --user="root" -it mygetname2 /bin/bash
+./renew_cert.sh
+exit
+curl https://hospital.getname.noharm.ai/patient-name/12345 -vvv
 ```
