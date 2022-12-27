@@ -15,8 +15,8 @@ pool = cx_Oracle.SessionPool(user="user", password="pass",
 def hello():
     return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
 
+#@lru_cache(maxsize=1024)
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
-@lru_cache(maxsize=1024)
 def getRawName(idPatient):
 
     name = None
