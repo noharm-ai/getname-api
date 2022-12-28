@@ -3,16 +3,6 @@ FROM tiangolo/uwsgi-nginx-flask:python3.8
 # if apt-secure(8) error use --allow-releaseinfo-change
 RUN apt-get update
 
-RUN pip install cx-Oracle \
-    && mkdir -p /opt/oracle \
-    && cd /opt/oracle \
-    && wget https://download.oracle.com/otn_software/linux/instantclient/199000/instantclient-basic-linux.x64-19.9.0.0.0dbru.zip --no-check-certificate \
-    && unzip instantclient-basic-linux.x64-19.9.0.0.0dbru.zip \
-    && apt-get install -y libaio1 libaio-dev \
-    && sh -c "echo /opt/oracle/instantclient_19_9 > /etc/ld.so.conf.d/oracle-instantclient.conf" \
-    && ldconfig
-ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_19_9
-
 RUN apt-get update && apt-get install -y cron
 
 

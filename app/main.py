@@ -1,33 +1,37 @@
 from flask import request, url_for, jsonify
 from flask_api import FlaskAPI, status
 from flask_cors import CORS
-from functools import lru_cache
-import cx_Oracle
+import psycopg2
+from psycopg2 import pool
 
 app = FlaskAPI(__name__)
 CORS(app)
 
-pool = cx_Oracle.SessionPool(user="user", password="pass",
-                             dsn="127.0.0.1:1521/service", min=2,
-                             max=5, increment=1)
+pool = psycopg2.pool.SimpleConnectionPool(
+                                        1,
+                                        20,
+                                        user="user",
+                                        password="pass",
+                                        host="host",
+                                        port="5432",
+                                        database="database")
 
 @app.route("/")
 def hello():
     return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
 
-#@lru_cache(maxsize=1024)
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
 def getRawName(idPatient):
-
     name = None
     
-    #with cx_Oracle.connect("user", "pass", "127.0.0.1:1521/service") as connection:
-    connection = pool.acquire()
+    connection = pool.getconn()
     cursor = connection.cursor()
-    for result in cursor.execute("SELECT nm_paciente FROM schema.paciente WHERE cd_paciente = "+str(idPatient)):
+    cursor.execute("SELECT nome FROM public.usuario WHERE idusuario = %(idPatient)s", {'idPatient': idPatient})
+    for result in cursor.fetchall():
         name = result[0]
-    
-    pool.release(connection)
+
+    cursor.close()
+    pool.putconn(connection)
 
     if name:
         return {
