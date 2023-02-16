@@ -85,3 +85,12 @@ docker exec --user="root" -it mygetname2 /bin/bash
 exit
 curl https://hospital.getname.noharm.ai/patient-name/12345 -vvv
 ```
+
+### 2.5 Libera Acesso do Firewall
+```
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m tcp --dport 443 -j ACCEPT
+```
+
+
+
