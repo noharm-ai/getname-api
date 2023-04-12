@@ -2,32 +2,29 @@ from flask import request, url_for, jsonify
 from flask_api import FlaskAPI, status
 from flask_cors import CORS
 from functools import lru_cache
-import cx_Oracle
+import pymssql
 
 app = FlaskAPI(__name__)
 CORS(app)
 
-pool = cx_Oracle.SessionPool(user="user", password="pass",
-                             dsn="127.0.0.1:1521/service", min=2,
-                             max=5, increment=1)
+connection = pymssql.connect(server='server', user='user', 
+                             password='password', 
+                             database='database')
 
 @app.route("/")
 def hello():
-    return "Serviço de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
+    return "Servico de nomes habilitado! Volte para a NoHarm e use o sistema normalmente ;)"
 
+#@lru_cache(maxsize=1024)
 @app.route("/patient-name/<int:idPatient>", methods=['GET'])
-@lru_cache(maxsize=1024)
 def getRawName(idPatient):
 
     name = None
-    
-    #with cx_Oracle.connect("user", "pass", "127.0.0.1:1521/service") as connection:
-    connection = pool.acquire()
+
     cursor = connection.cursor()
-    for result in cursor.execute("SELECT nm_paciente FROM schema.paciente WHERE cd_paciente = "+str(idPatient)):
-        name = result[0]
-    
-    pool.release(connection)
+    cursor.execute("SELECT PAC_NOME FROM SMART.DBO.PAC WHERE PAC_REG = "+str(idPatient))
+    result = cursor.fetchone()
+    name = result[0]
 
     if name:
         return {

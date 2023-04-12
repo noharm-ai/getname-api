@@ -1,6 +1,6 @@
 Flask
 Flask-API
 flask-cors
-cx_Oracle
+pymssql
 pyopenssl
 uwsgi
