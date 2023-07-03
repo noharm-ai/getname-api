@@ -36,6 +36,12 @@ docker run -d --name mygetname -p 443:443 getname #deamon
 curl https://nomedocliente.getname.noharm.ai/patient-name/12345
 ```
 
+### 1.2. Teste Multiple
+
+```
+curl -d '{"patients":[1234,2345,6547,6789]}' -H "Content-Type: application/json" -X POST https://nomedocliente.getname.noharm.ai/patient-name/multiple
+```
+
 ### 2. Outras configurações
 ### 2.1 Desenvolvimento
 
