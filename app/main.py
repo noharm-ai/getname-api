@@ -9,7 +9,7 @@ CORS(app)
 
 pool = cx_Oracle.SessionPool(user="user", password="pass",
                              dsn="127.0.0.1:1521/service", min=2,
-                             max=5, increment=1)
+                             max=5, increment=1, wait_timeout=2000)
 
 @app.route("/")
 def hello():
