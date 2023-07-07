@@ -1,18 +1,14 @@
+from sqlalchemy import text
 from flask_api import status
+from connections import engine, QUERY
 
 
 def getName(idPatient):
     name = None
-
-    # with cx_Oracle.connect("user", "pass", "127.0.0.1:1521/service") as connection:
-    connection = pool.acquire()
-    cursor = connection.cursor()
-    for result in cursor.execute(
-        "SELECT nm_paciente FROM schema.paciente WHERE cd_paciente = " + str(idPatient)
-    ):
-        name = result[0]
-
-    pool.release(connection)
+    with engine.connect() as connection:
+        result = connection.execute(text(QUERY.format(idPatient)))
+        for row in result:
+            name = row.name
 
     if name:
         return {
