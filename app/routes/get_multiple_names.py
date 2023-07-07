@@ -15,8 +15,8 @@ def get_multiple_names():
     with engine.connect() as connection:
         result = connection.execute(text(sql))
         for row in result:
-            found.append(row.id)
-            names.append({"status": "success", "idPatient": row.id, "name": row.name})
+            found.append(row[1])
+            names.append({"status": "success", "idPatient": row[1], "name": row[0]})
 
     for id_patient in ids_list:
         if id_patient not in found:

@@ -8,7 +8,7 @@ def get_name(idPatient):
     with engine.connect() as connection:
         result = connection.execute(text(QUERY.format(idPatient)))
         for row in result:
-            name = row.name
+            name = row[0]
 
     if name:
         return {
