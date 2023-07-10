@@ -1,6 +1,6 @@
-Flask==2.2.5
-Flask-API
-flask-cors
-cx_Oracle
-pyopenssl
+Flask==2.3.2
+Flask_API==3.1
+Flask_Cors==4.0.0
+python-dotenv==1.0.0
+SQLAlchemy==2.0.18
 uwsgi
