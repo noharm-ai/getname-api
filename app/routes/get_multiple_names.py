@@ -7,13 +7,17 @@ from connections import engine, MULTI_QUERY
 def get_multiple_names():
     data = request.get_json()
     ids_list = data.get("patients", [])
+    bind_ids = [":" + str(i + 1) for i in range(len(ids_list))]
+    dict_keys = [str(i + 1) for i in range(len(ids_list))]
 
-    sql = MULTI_QUERY.format(",".join([str(i) for i in ids_list]))
     names = []
     found = []
 
     with engine.connect() as connection:
-        result = connection.execute(text(sql))
+        result = connection.execute(
+            text(MULTI_QUERY.format(",".join(bind_ids))),
+            dict(zip(dict_keys, ids_list)),
+        )
         for row in result:
             found.append(row[1])
             names.append({"status": "success", "idPatient": row[1], "name": row[0]})

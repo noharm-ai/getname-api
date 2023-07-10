@@ -6,7 +6,9 @@ from connections import engine, QUERY
 def get_name(idPatient):
     name = None
     with engine.connect() as connection:
-        result = connection.execute(text(QUERY.format(idPatient)))
+        result = connection.execute(
+            text(QUERY.format(":idPatient")), {"idPatient": idPatient}
+        )
         for row in result:
             name = row[0]
 
