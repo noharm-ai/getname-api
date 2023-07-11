@@ -1,6 +1,11 @@
-Flask==2.3.2
-Flask_API==3.1
-Flask_Cors==4.0.0
-python-dotenv==1.0.0
-SQLAlchemy==2.0.18
-uwsgi
+Flask==2.2.5
+Flask_API
+Flask_Cors
+greenlet<0.5,>=0.4.5
+python-dotenv
+SQLAlchemy
+psycopg2-binary
+psycopg2
+cx_Oracle
+pymssql
+gunicorn
