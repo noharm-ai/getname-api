@@ -3,7 +3,6 @@ from routes.get_name import get_name
 from routes.get_multiple_names import get_multiple_names
 from flask_api import FlaskAPI
 from flask_cors import CORS
-from connections import FLASK_PORT
 
 
 app = FlaskAPI(__name__)
@@ -16,4 +15,4 @@ app.add_url_rule(
 )
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=FLASK_PORT, ssl_context="adhoc")
+    app.run(host="0.0.0.0", ssl_context="adhoc")
