@@ -1,8 +1,10 @@
 from sqlalchemy import text
 from flask_api import status
-from connections import engine, QUERY
+from resources.connections import engine, QUERY
+from resources.cache import cache
 
 
+@cache.cached()
 def get_name(idPatient):
     name = None
     with engine.connect() as connection:

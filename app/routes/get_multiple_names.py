@@ -1,9 +1,11 @@
 from sqlalchemy import text
 from flask import request
 from flask_api import status
-from connections import engine, MULTI_QUERY
+from resources.connections import engine, MULTI_QUERY
+from resources.cache import cache
 
 
+@cache.cached()
 def get_multiple_names():
     data = request.get_json()
     ids_list = data.get("patients", [])
