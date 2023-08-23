@@ -22,9 +22,15 @@ POOL_TIMEOUT = os.getenv("POOL_TIMEOUT")
 QUERY = os.getenv("DB_QUERY")
 MULTI_QUERY = os.getenv("DB_MULTI_QUERY")
 
-url_object = URL.create(
-    TYPE, username=USER, password=PASS, host=HOST, database=DATABASE, port=PORT
-)
+if TYPE == "oracle":
+    url_object = (
+        f"oracle+cx_oracle://{USER}:{PASS}@{HOST}:{PORT}/?service_name={DATABASE}"
+    )
+
+else:
+    url_object = URL.create(
+        TYPE, username=USER, password=PASS, host=HOST, database=DATABASE, port=PORT
+    )
 
 engine = create_engine(
     url_object,
