@@ -27,6 +27,10 @@ if TYPE == "oracle":
         f"oracle+cx_oracle://{USER}:{PASS}@{HOST}:{PORT}/?service_name={DATABASE}"
     )
 
+elif TYPE == "firebird":
+    url_object = f"firebird+fdb://{USER}:{PASS}@{HOST}:{PORT}/{DATABASE}"
+
+
 else:
     url_object = URL.create(
         TYPE, username=USER, password=PASS, host=HOST, database=DATABASE, port=PORT

@@ -13,7 +13,7 @@ RUN pip install cx-Oracle \
     && ldconfig
 ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_19_9
 
-RUN apt-get update && apt-get install -y cron wget git vim curl htop
+RUN apt-get update && apt-get install -y cron wget git vim curl htop libfbclient2
 
 # Copy crontab file to the cron.d directory
 COPY crontab /etc/cron.d/crontab
