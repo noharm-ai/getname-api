@@ -52,7 +52,9 @@ def get_multiple():
     # TODO: review  mssql
     #connection = pool.acquire()
     cursor = connection.cursor()
-    for result in cursor.execute(sql, list):
+    cursor.execute(sql, list):
+    records = cursor.fetachall():
+    for result in records:
         found.append(result[1])
         names.append({
             'status': 'success',
