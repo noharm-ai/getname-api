@@ -4,3 +4,4 @@ flask-cors
 cx_Oracle
 pyopenssl
 uwsgi
+Werkzeug==2.3.7
