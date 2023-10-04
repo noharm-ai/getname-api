@@ -27,7 +27,7 @@ docker build -t getname . #build
 
 docker run -p 443:443 getname #test
 
-docker run -d --name mygetname -p 443:443 getname #deamon
+docker run -d --log-opt max-size=100m --name mygetname -p 443:443 getname #deamon
 ```
 
 ### 1.1. Teste
