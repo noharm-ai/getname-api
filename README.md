@@ -24,10 +24,38 @@ git clone https://github.com/noharm-ai/getname-api
 cd getname-api
 
 docker build -t getname . #build
+```
+Antes de rodar o container, é necessário criar o arquivo .env
+```
+nano .env
+```
+E colar os parâmetros que a aplicação utiliza.
 
-docker run -p 443:443 getname #test
+Os DB_TYPE aceitos são: oracle, postgres, mssql e firebird.
+```
+DB_TYPE=oracle
+DB_HOST=server.cliente.com
+DB_DATABASE=homolog
+DB_PORT=1521
+DB_USER=user_noharm
+DB_PASS=securepassword
 
-docker run -d --name mygetname -p 443:443 getname #deamon
+POOL_SIZE=1
+POOL_MAX_OVERFLOW=2
+POOL_TIMEOUT=2000
+
+CACHE_TIMEOUT=3
+CACHE_THRESHOLD=1000
+
+DB_QUERY=SELECT nome_paciente FROM schema.paciente WHERE id_paciente = {}
+DB_MULTI_QUERY=SELECT DISTINCT(nome_paciente), id_paciente FROM schema.paciente WHERE id_paciente IN ({})
+
+```
+Salvar o arquivo .env e seguir com o run
+```
+docker run --env-file .env -p 443:443 getname #test
+
+docker run -d --env-file .env --name mygetname -p 443:443 getname #deamon
 ```
 
 ### 1.1. Teste
