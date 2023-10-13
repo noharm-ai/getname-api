@@ -30,16 +30,22 @@ docker run -p 443:443 getname #test
 docker run -d --log-opt max-size=100m --name mygetname -p 443:443 getname #deamon
 ```
 
-### 1.1. Teste
+### 1.1. Test
 
 ```
 curl https://nomedocliente.getname.noharm.ai/patient-name/12345
 ```
 
-### 1.2. Teste Multiple
+### 1.2. Test Multiple
 
 ```
 curl -d '{"patients":[1234,2345,6547,6789]}' -H "Content-Type: application/json" -X POST https://nomedocliente.getname.noharm.ai/patient-name/multiple
+```
+
+### 1.3. Local Test
+
+```
+curl ip_server_local/patient-name/12345
 ```
 
 ### 2. Outras configurações
