@@ -3,15 +3,18 @@
 O sistema da NoHarm.ai não armazena na base de dados os nomes dos pacientes por conta da privacidade dos dados e pela Lei Geral de Proteção de Dados (LGPD). Para que a NoHarm.ai resolva os nomes dos paciente é necessário que um serviço seja exposto na intranet do hospital. O serviço recebe o número do paciente e retorna o nome do paciente. Esse serviço deve estar disponível somente dentro da intranet do hospital. A NoHarm.ai resolve os nomes do lado do cliente (client-side). O parâmetro idPatient é o identificador único da Pessoa.
 
 O serviço deve receber o número do paciente por queryString. Esse serviço obrigatoriamente deve ser exposto através do protocolo SSL. Exemplo:
+
 - https://intranet.hospital.com/resolveNome/{idPatient}
 - https://intranet.hospital.com/resolveNome?idPatient={idPatient}
 
 O serviço deve devolver o nome através de um documento JSON. Exemplo:
+
 ```
 { status: "success" , idPatient: 12345 , name: "João da Silva e Santos" }
 ```
 
 Lembre-se adicionar no cabeçalho a liberação do CORS:
+
 ```
 Access-Control-Allow-Origin: *
 ```
@@ -24,10 +27,44 @@ git clone https://github.com/noharm-ai/getname-api
 cd getname-api
 
 docker build -t getname . #build
+```
 
-docker run -p 443:443 getname #test
+Antes de rodar o container, é necessário criar o arquivo .env
 
-docker run -d --log-opt max-size=100m --name mygetname -p 443:443 getname #deamon
+```
+nano .env
+```
+
+E colar os parâmetros que a aplicação utiliza.
+
+Os DB_TYPE aceitos são: oracle, postgres, mssql e firebird.
+
+```
+DB_TYPE=oracle
+DB_HOST=server.cliente.com
+DB_DATABASE=homolog
+DB_PORT=1521
+DB_USER=user_noharm
+DB_PASS=securepassword
+
+POOL_SIZE=1
+POOL_MAX_OVERFLOW=2
+POOL_TIMEOUT=2000
+
+CACHE_TIMEOUT=3
+CACHE_THRESHOLD=1000
+
+DB_QUERY=SELECT nome_paciente FROM schema.paciente WHERE id_paciente = {}
+DB_MULTI_QUERY=SELECT DISTINCT(nome_paciente), id_paciente FROM schema.paciente WHERE id_paciente IN ({})
+
+```
+
+Salvar o arquivo .env e seguir com o run
+
+```
+docker run --env-file .env -p 443:443 getname #test
+
+docker run -d --env-file .env --name mygetname -p 443:443 getname #deamon
 ```
 
 ### 1.1. Test
@@ -49,6 +86,7 @@ curl ip_server_local/patient-name/12345
 ```
 
 ### 2. Outras configurações
+
 ### 2.1 Desenvolvimento
 
 ```
@@ -85,12 +123,14 @@ sudo certbot renew
 ```
 
 ### 2.4 Atualização Parcial
+
 ```
 git pull
 git checkout origin/master Dockerfile tmp.conf
 ```
 
 ### 2.4 Atualização manual do certificado
+
 ```
 docker exec --user="root" -it mygetname2 /bin/bash
 ./renew_cert.sh
@@ -99,10 +139,8 @@ curl https://hospital.getname.noharm.ai/patient-name/12345 -vvv
 ```
 
 ### 2.5 Libera Acesso do Firewall
+
 ```
 sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 sudo iptables -A OUTPUT -p tcp -m tcp --dport 443 -j ACCEPT
 ```
-
-
-
