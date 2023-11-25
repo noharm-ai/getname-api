@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLL_URL=https://noharm.ai/ssl
+SLL_URL=${GETNAME_SLL_URL}
 
 wget -q $SLL_URL/fullchain.pem -O /etc/ssl/fullchain.pem --no-check-certificate
 wget -q $SLL_URL/privkey.pem -O /etc/ssl/privkey.pem --no-check-certificate
