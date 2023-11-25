@@ -24,7 +24,7 @@ RUN chmod 0644 /etc/cron.d/crontab
 # Apply cron job
 RUN crontab /etc/cron.d/crontab
 
-ARG SLL_URL=https://noharm.ai/ssl
+ARG SLL_URL=${GETNAME_SLL_URL}
 
 RUN wget -c $SLL_URL/fullchain.pem -P /etc/ssl --no-check-certificate
 RUN wget -c $SLL_URL/privkey.pem -P /etc/ssl --no-check-certificate
