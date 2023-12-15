@@ -19,11 +19,11 @@ def get_multiple_names():
             dict(zip(dict_keys, ids_list)),
         )
         for row in result:
-            found.append(row[1])
+            found.append(str(row[1]))
             names.append({"status": "success", "idPatient": row[1], "name": row[0]})
 
     for id_patient in ids_list:
-        if id_patient not in found:
+        if str(id_patient) not in found:
             names.append(
                 {
                     "status": "error",
