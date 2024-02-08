@@ -32,6 +32,7 @@ elif TYPE == "firebird":
 
 
 else:
+    TYPE = "mssql+pymssql" if TYPE == "mssql" else TYPE
     url_object = URL.create(
         TYPE, username=USER, password=PASS, host=HOST, database=DATABASE, port=PORT
     )
