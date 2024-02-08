@@ -37,9 +37,11 @@ nano .env
 
 E colar os parâmetros que a aplicação utiliza.
 
-Os DB_TYPE aceitos são: oracle, postgres, mssql e firebird.
+Os DB_TYPE aceitos são: oracle, postgresql, mssql e firebird.
 
 ```
+GETNAME_SSL_URL=https://noharm.ai/ssl
+
 DB_TYPE=oracle
 DB_HOST=server.cliente.com
 DB_DATABASE=homolog
