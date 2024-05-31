@@ -43,4 +43,6 @@ engine = create_engine(
     pool_size=int(POOL_SIZE),
     max_overflow=int(POOL_MAX),
     pool_timeout=int(POOL_TIMEOUT),
+    pool_pre_ping=True,
+    pool_recycle=3600,
 )
