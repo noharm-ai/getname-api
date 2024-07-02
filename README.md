@@ -35,7 +35,7 @@ Antes de rodar o container, é necessário criar o arquivo .env
 nano .env
 ```
 
-E colar os parâmetros que a aplicação utiliza.
+E colar os parâmetros que a aplicação utiliza. Se a senha tiver caracteres especiais, precisa colocar entre aspas simples.
 
 Os DB_TYPE aceitos são: oracle, postgresql, mssql e firebird.
 
@@ -47,7 +47,7 @@ DB_HOST=server.cliente.com
 DB_DATABASE=homolog
 DB_PORT=1521
 DB_USER=user_noharm
-DB_PASS=securepassword
+DB_PASS='securepassword'
 
 POOL_SIZE=1
 POOL_MAX_OVERFLOW=2
