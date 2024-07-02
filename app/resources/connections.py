@@ -13,7 +13,7 @@ HOST = os.getenv("DB_HOST")
 DATABASE = os.getenv("DB_DATABASE")
 PORT = os.getenv("DB_PORT")
 USER = os.getenv("DB_USER")
-PASS = quote(os.getenv("DB_PASS"))
+PASS = quote(str(os.getenv("DB_PASS")))
 
 # Pool parameters
 POOL_SIZE = os.getenv("POOL_SIZE")
