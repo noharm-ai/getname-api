@@ -8,6 +8,7 @@ greenlet<0.5,>=0.4.5
 psycopg2==2.9.6
 psycopg2-binary==2.9.6
 pymssql==2.2.7
+pymysql==1.1.1
 python-dotenv==1.0.0
 pyopenssl
 SQLAlchemy==2.0.18

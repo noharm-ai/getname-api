@@ -31,6 +31,8 @@ if TYPE == "oracle":
 elif TYPE == "firebird":
     url_object = f"firebird+fdb://{USER}:{PASS}@{HOST}:{PORT}/{DATABASE}"
 
+elif TYPE == "mysql":
+    url_object = f"mysql+pymysql://{USER}:{PASS}@{HOST}:{PORT}/{DATABASE}"
 
 else:
     TYPE = "mssql+pymssql" if TYPE == "mssql" else TYPE
