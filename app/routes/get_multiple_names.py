@@ -2,8 +2,10 @@ from sqlalchemy import text
 from flask import request
 from flask_api import status
 from resources.connections import engine, MULTI_QUERY
+from resources.api_decorator import api_endpoint
 
 
+@api_endpoint()
 def get_multiple_names():
     data = request.get_json()
     ids_list = data.get("patients", [])

@@ -2,8 +2,10 @@ from sqlalchemy import text
 from flask_api import status
 from resources.connections import engine, QUERY
 from resources.cache import cache
+from resources.api_decorator import api_endpoint
 
 
+@api_endpoint()
 @cache.cached()
 def get_name(idPatient):
     name = None

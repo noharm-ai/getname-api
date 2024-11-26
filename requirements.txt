@@ -16,3 +16,4 @@ sqlalchemy-firebird
 packaging
 uwsgi
 Werkzeug==2.3.7
+PyJWT==2.9.0

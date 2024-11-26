@@ -23,6 +23,9 @@ POOL_TIMEOUT = os.getenv("POOL_TIMEOUT")
 QUERY = os.getenv("DB_QUERY")
 MULTI_QUERY = os.getenv("DB_MULTI_QUERY")
 
+# JWT
+JWT_SECRET = os.getenv("JWT_SECRET")
+
 if TYPE == "oracle":
     url_object = (
         f"oracle+cx_oracle://{USER}:{PASS}@{HOST}:{PORT}/?service_name={DATABASE}"

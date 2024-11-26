@@ -59,6 +59,8 @@ CACHE_THRESHOLD=1000
 DB_QUERY=SELECT nome_paciente FROM schema.paciente WHERE id_paciente = {}
 DB_MULTI_QUERY=SELECT DISTINCT(nome_paciente), id_paciente FROM schema.paciente WHERE id_paciente IN ({})
 
+JWT_SECRET=''
+
 ```
 
 Salvar o arquivo .env e seguir com o run
@@ -73,6 +75,12 @@ docker run -d --log-opt max-size=100m --name mygetname -p 443:443 getname #deamo
 
 ```
 curl https://nomedocliente.getname.noharm.ai/patient-name/12345
+```
+
+Com auth:
+
+```
+curl -H "Authorization: Bearer token" https://nomedocliente.getname.noharm.ai/patient-name/12345
 ```
 
 ### 1.2. Test Multiple
