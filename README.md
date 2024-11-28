@@ -82,6 +82,7 @@ Com auth:
 Gerar o token:
 
 ```
+docker exec --user="root" -it noharm-getname /bin/bash
 cd app
 python test_token.py
 ```
