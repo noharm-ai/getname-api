@@ -3,7 +3,7 @@ import logging
 from functools import wraps
 from flask import request
 from flask_api import status
-from jwt.exceptions import PyJWTError, ExpiredSignatureError
+from jwt.exceptions import PyJWTError, ExpiredSignatureError, InvalidTokenError
 
 from resources.connections import JWT_SECRET
 
@@ -15,9 +15,13 @@ def api_endpoint():
         def decorator_f(*args, **kwargs):
             try:
                 if JWT_SECRET:
-                    auth_type, auth_token = request.headers.get(
-                        "Authorization", ""
-                    ).split()
+                    authorization = request.headers.get("Authorization", "").split()
+
+                    if len(authorization) != 2:
+                        raise InvalidTokenError()
+
+                    auth_token = authorization[1]
+
                     jwt.decode(
                         jwt=auth_token,
                         key=JWT_SECRET,
@@ -31,6 +35,12 @@ def api_endpoint():
                 return {
                     "status": "error",
                     "message": "Token expirado",
+                }, status.HTTP_401_UNAUTHORIZED
+
+            except InvalidTokenError:
+                return {
+                    "status": "error",
+                    "message": "Token inválido",
                 }, status.HTTP_401_UNAUTHORIZED
 
             except PyJWTError as e:
