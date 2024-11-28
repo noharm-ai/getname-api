@@ -68,7 +68,7 @@ Salvar o arquivo .env e seguir com o run
 ```
 docker run --env-file .env -p 443:443 getname #test
 
-docker run -d --log-opt max-size=100m --name mygetname -p 443:443 getname #deamon
+docker run -d --env-file .env --log-opt max-size=100m --name noharm-getname -p 443:443 getname #deamon
 ```
 
 ### 1.1. Test
