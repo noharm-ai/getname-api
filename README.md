@@ -79,8 +79,17 @@ curl https://nomedocliente.getname.noharm.ai/patient-name/12345
 
 Com auth:
 
+Gerar o token:
+
 ```
-curl -H "Authorization: Bearer token" https://nomedocliente.getname.noharm.ai/patient-name/12345
+cd app
+python test_token.py
+```
+
+Acionar o endpoint usando o token gerado:
+
+```
+curl -H "Authorization: Bearer [token]" https://nomedocliente.getname.noharm.ai/patient-name/12345
 ```
 
 ### 1.2. Test Multiple
