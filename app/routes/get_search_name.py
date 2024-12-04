@@ -1,6 +1,6 @@
 from sqlalchemy import text
 from flask_api import status
-from resources.connections import engine
+from resources.connections import engine, NAME_QUERY
 from resources.cache import cache
 from resources.api_decorator import api_endpoint
 
@@ -12,12 +12,12 @@ def search_name(partial_name):
         results = []
         with engine.connect() as connection:
             # Prepare the query with the partial name
-            query = DB_NAME_QUERY.format(partial_name)
+            query = NAME_QUERY.format(partial_name)
             result = connection.execute(text(query))
 
             # Collect results
             for row in result:
-                data = {key: value for key, value in row._mapping.items()}
+                data = {"idPatient": row[0], "name": row[1]}
                 results.append(data)
 
         if results:
