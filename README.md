@@ -59,7 +59,7 @@ CACHE_THRESHOLD=1000
 DB_QUERY=SELECT nome_paciente FROM schema.paciente WHERE id_paciente = {}
 DB_MULTI_QUERY=SELECT DISTINCT(nome_paciente), id_paciente FROM schema.paciente WHERE id_paciente IN ({})
 
-JWT_SECRET=''
+JWT_SECRET=
 
 ```
 
