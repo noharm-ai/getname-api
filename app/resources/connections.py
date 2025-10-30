@@ -22,6 +22,7 @@ POOL_TIMEOUT = os.getenv("POOL_TIMEOUT")
 
 QUERY = os.getenv("DB_QUERY")
 MULTI_QUERY = os.getenv("DB_MULTI_QUERY")
+NAME_QUERY = os.getenv("DB_NAME_QUERY")
 
 # JWT
 JWT_SECRET = os.getenv("JWT_SECRET")

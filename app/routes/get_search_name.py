@@ -12,8 +12,8 @@ def search_name(partial_name):
         results = []
         with engine.connect() as connection:
             # Prepare the query with the partial name
-            query = NAME_QUERY.format(partial_name)
-            result = connection.execute(text(query))
+            query = text(NAME_QUERY.format(':partialName'))
+            result = connection.execute(query, {'partialName': partial_name})
 
             # Collect results
             for row in result:
