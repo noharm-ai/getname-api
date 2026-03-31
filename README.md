@@ -1,4 +1,4 @@
-# Serviço Interno de Resolução de Nomes
+# Serviço Interno de Resolução de Nomes (ARQUIVADO)
 
 O sistema da NoHarm.ai não armazena na base de dados os nomes dos pacientes por conta da privacidade dos dados e pela Lei Geral de Proteção de Dados (LGPD). Para que a NoHarm.ai resolva os nomes dos paciente é necessário que um serviço seja exposto na intranet do hospital. O serviço recebe o número do paciente e retorna o nome do paciente. Esse serviço deve estar disponível somente dentro da intranet do hospital. A NoHarm.ai resolve os nomes do lado do cliente (client-side). O parâmetro idPatient é o identificador único da Pessoa.
 
